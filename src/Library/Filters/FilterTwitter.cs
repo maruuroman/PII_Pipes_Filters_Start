@@ -5,16 +5,19 @@ using Ucu.Poo.Twitter;
 
 namespace CompAndDel.Filters
 {
-    public class FilterTwitter : TwitterImage
+    public class FilterTwitter : TwitterImage, IFilter
     {
-        public IPicture Filter(IPicture image)
+        public IPicture Filter (IPicture picture)
         {
             var twitter = new TwitterImage();
-            string result = twitter.PublishToTwitter("Luke el capo", @"lukeEditado2.jpg");
-            Console.WriteLine(result);
-            return image;
+            Console.WriteLine(twitter.PublishToTwitter("luke el capo", "lukeEditado2.jpg"));
+            return picture;
+        }
+        public string UploadImageToTwitter(string text, string imagePath)
+        {
+            var twitter = new TwitterImage();
+            return twitter.PublishToTwitter("luke el capo", "lukeEditado2.jpg");
 
-            
         }
     }
 }

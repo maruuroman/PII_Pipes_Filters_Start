@@ -76,13 +76,13 @@ namespace CompAndDel
 
             // Guardar la imagen final
             provider.SavePicture(finalPicture, "PathToFinalImage.jpg");
-            
             */
+            
 
         //-------------------------------------------------------------------------------------------------------------------------
             //EJERCICIO 3
+            
             /*
-    
             var filterTwitter = new FilterTwitter();
             string text = "Luke el capo";
             string pathToImage = @"lukeEditado2.jpg";
@@ -96,6 +96,7 @@ namespace CompAndDel
         //-------------------------------------------------------------------------------------------------------------------------
             //EJERCICIO 4
            
+           /*
             CognitiveFace cog = new CognitiveFace(true, Color.GreenYellow);
             cog.Recognize(@"luke.jpg");
             FoundFace(cog);
@@ -103,17 +104,7 @@ namespace CompAndDel
             FoundFace(cog);
             cog.Recognize(@"Dwayne.jpg");
             FoundFace(cog);
-
-            PictureProvider provider = new PictureProvider();
-            IPicture picture = provider.GetPicture(@"luke.jpg");
-
-            FilterConditional filterConditional= new FilterConditional();
-            FilterTwitter filterTwitter = new FilterTwitter();
-
-            IFilter filter = new FilterNegative();   // filtro: Negativo
-            IPipe pipe= new PipeSerial(filter, new PipeNull());
-
-            
+                       
             static void FoundFace(CognitiveFace cog)
             {
                 if (cog.FaceFound)
@@ -134,8 +125,10 @@ namespace CompAndDel
                     IFilter filter = new FilterNegative();   // filtro: Negativo
                     IPipe pipe= new PipeSerial(filter, new PipeNull());
                     
+                    
                 }    
             }
+            */            
         }
     }
 }

@@ -38,11 +38,7 @@ namespace CompAndDel.Pipes
         /// <param name="picture">imagen a filtrar y enviar a las siguientes cañerías</param>
         public IPicture Send(IPicture picture)
         {
-            PictureProvider provider = new PictureProvider();
-            provider.SavePicture(picture, "temporal.jpg");
-            CognitiveFace cog = new CognitiveFace(true, Color.GreenYellow);
-            cog.Recognize(@"temporal.jpg");
-            
+            this.filterconditional.Filter(picture);
             if (this.filterconditional.FaceFound)
             {
                 return this.nextPipe.Send(picture);
