@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CompAndDel;
+using System.Diagnostics;
+using System.Drawing;
+using CompAndDel.Filters;
+using Ucu.Poo.Cognitive; 
 
 
 namespace CompAndDel.Pipes
@@ -11,6 +15,7 @@ namespace CompAndDel.Pipes
     {
         IPipe next2Pipe;
         IPipe nextPipe;
+        FilterConditional filterconditional;
         
         /// <summary>
         /// La cañería recibe una imagen, la clona y envìa la original por una cañeria y la clonada por otra.
@@ -18,10 +23,12 @@ namespace CompAndDel.Pipes
         /// <param name="tipoFiltro">Tipo de filtro que se debe aplicar sobre la imagen. Se crea un nuevo filtro con los parametros por defecto</param>
         /// <param name="nextPipe">Siguiente cañeria con filtro</param>
         /// <param name="next2Pipe">Siguiente cañeria sin filtro</param>
-        public PipeFork(IPipe nextPipe, IPipe next2Pipe) 
+        /// <param name="filter">Se utiliza el conditional filter </param>/// 
+        public PipeFork(FilterConditional filter, IPipe nextPipe, IPipe next2Pipe) 
         {
             this.next2Pipe = next2Pipe;
-            this.nextPipe = nextPipe;           
+            this.nextPipe = nextPipe; 
+            this.filterconditional = filter;           
         }
         
         /// <summary>
@@ -31,8 +38,20 @@ namespace CompAndDel.Pipes
         /// <param name="picture">imagen a filtrar y enviar a las siguientes cañerías</param>
         public IPicture Send(IPicture picture)
         {
-            next2Pipe.Send(picture.Clone());
-            return this.nextPipe.Send(picture);
+            PictureProvider provider = new PictureProvider();
+            provider.SavePicture(picture, "temporal.jpg");
+            CognitiveFace cog = new CognitiveFace(true, Color.GreenYellow);
+            cog.Recognize(@"temporal.jpg");
+            
+            if (this.filterconditional.FaceFound)
+            {
+                return this.nextPipe.Send(picture);
+            }
+            else
+            {
+                return this.next2Pipe.Send(picture.Clone());
+            }
+            
         }
     }
 }

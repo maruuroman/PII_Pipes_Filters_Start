@@ -4,10 +4,10 @@
     <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PII_CognitiveAPI\src\Library\Library.csproj" />
     <ProjectReference Include="..\..\..\PII_TwitterApi\src\Library\Library.csproj" />
+    <ProjectReference Include="..\..\..\PII_CognitiveAPI\src\Library\Library.csproj" />
   </ItemGroup>
 </Project>
