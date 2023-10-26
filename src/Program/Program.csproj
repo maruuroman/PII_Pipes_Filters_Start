@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj" />
+    <ProjectReference Include="..\..\..\PII_TwitterApi\src\Library\Library.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
